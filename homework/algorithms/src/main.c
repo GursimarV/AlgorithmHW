@@ -1,77 +1,87 @@
 #include "algo.h"
 #include <assert.h>
 
-int main(void) {
+int main(void)
+{
   long answer1 = fibonacci(6);
   assert(answer1 == 8);
-    int n, t1 = 0, t2 = 1, nextTerm = 0, i;
-    printf("Enter the n value: ");
-    scanf("%d", &n);
-    if(n == 0 || n ==1)
-        printf("%d", n);
-    else
-        nextTerm = t1 + t2;
-    for(i = 3; i <= n; ++i)
-    {
-        t1 = t2;
-        t2 = nextTerm;
-    }
-    printf("%d", t2);
+  return 0;
 
   long answer2 = reverse(123);
   assert(answer2 == 321);
-    int reverse = 0;
-
-    printf("Enter a number to reverse\n");
-    scanf("%d", &n);
-
-    while (n != 0)
-    {
-        reverse = reverse * 10;
-        reverse = reverse + n%10;
-        n = n/10;
-    }
-
-    printf("Reverse of the number = %d\n", reverse);
+  return 0;
 
   int answer3 = prime_factor(12);
   assert(answer3 == 3);
-
-    long int n;
-    n = answer3;
-    long int div=2, ans = 0, maxFact;
-    while(n!=0) {
-        if(n % div !=0)
-            div = div + 1;
-        else {
-            maxFact = n;
-            n = n / div;
-            if(n == 1) {
-                printf("%d is the largest prime factor !",maxFact);
-                ans = 1;
-                break;
-            }
-        }
-    }
+  return 0;
 
   int answer4 = prime_sum(12);
   assert(answer4 == 28);
-    char *temp;
-    unsigned i, j;
-    size_t num = 10000;
-    unsigned long long sum = 0ULL;
+  return 0;
 
-    temp = calloc(num, sizeof *temp);
-    for (i = 2; i < num; i++) {
-        if (!temp[i]) {
-            sum += i;
-            for (j = i*2; j < num; j += i) {
-                temp[j] = 1;
-            }
+}
+
+long fibonacci (const int n)
+{
+    if (n <= 0) {
+        return 0;
+    } else if (n == 1) {
+        return 1;
+    } else {
+        return fibonacci(n - 1) + fibonacci(n - 2);
+    }
+}
+
+int reverse(const int n)
+{
+    int reversed = 0;
+    int temp = n;
+
+    while (temp != 0) {
+        reversed = reversed * 10 + temp % 10;
+        temp /= 10;
+    }
+
+    return reversed;
+}
+
+int is_prime(const int number) {
+    if (number <= 1) {
+        return 0; // Not prime
+    }
+
+    for (int i = 2; i * i <= number; i++) {
+        if (number % i == 0) {
+            return 0; // Not prime
         }
     }
-    free(temp);
-    printf("%llu\n", sum);
-    return 0;
-  return 0;
+
+    return 1; // Prime
+}
+
+int prime_factor(const int n) {
+    int largestPrime = 1;
+
+    if (n <= 1) {
+        return -1; // Invalid input
+    }
+
+    for (int i = 2; i <= n; i++) {
+        if (n % i == 0 && is_prime(i)) {
+            largestPrime = i;
+        }
+    }
+    return largestPrime;
+}
+
+int prime_sum(const int n)
+{
+    int sum = 0;
+
+    for (int i = 2; i < n; i++) {
+        if (is_prime(i)) {
+            sum += i;
+        }
+    }
+    return sum;
 }
