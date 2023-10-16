@@ -5,15 +5,12 @@ int main(void)
 {
   long answer1 = fibonacci(6);
   assert(answer1 == 8);
-  return 0;
 
-  long answer2 = reverse(123);
+  int answer2 = reverse(123);
   assert(answer2 == 321);
-  return 0;
 
   int answer3 = prime_factor(12);
   assert(answer3 == 3);
-  return 0;
 
   int answer4 = prime_sum(12);
   assert(answer4 == 28);
