@@ -6,7 +6,7 @@ int main(void)
   long answer1 = fibonacci(6);
   assert(answer1 == 8);
 
-  int answer2 = reverse(123);
+  long answer2 = reverse(123);
   assert(answer2 == 321);
 
   int answer3 = prime_factor(12);
