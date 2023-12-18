@@ -50,30 +50,35 @@ int is_prime(const int number)
     return 1; // Prime
 }
 
-long long prime_factor(long long n)
+int prime_factor(const int n)
 {
-    long long LPrime = -1;
+    int PrimeF = -1;
+    int temp = n;
 
-    if (n % 2 == 0)
+    if (temp % 2 == 0)
     {
-        LPrime = 2;
-        while (n % 2 == 0)
+        PrimeF = 2;
+
+        while (temp % 2 == 0)
         {
-            n = n / 2;
+            temp = temp / 2;
         }
     }
 
-    for (long long i = 3; i <= sqrt(n); i += 2) {
-        while (n % i == 0) {
-            LPrime = i;
-            n = n / i;
+    for (int i = 3; i <= sqrt(temp); i += 2)
+    {
+        while (temp % i == 0)
+        {
+            PrimeF = i;
+            temp = temp / i;
         }
     }
 
-    if (n > 2) {
-        LPrime = n;
+    if (temp > 2)
+    {
+        PrimeF = temp;
     }
-    return LPrime;
+    return PrimeF;
 }
 
 int prime_sum(const int n)
@@ -95,6 +100,6 @@ int prime_sum(const int n)
             sum += i;
         }
     }
-    
+
     return sum;
 }
